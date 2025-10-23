@@ -1,9 +1,33 @@
-- add characters
-  - itto
-- fix character taking damage/hurt
-- fix reactable tests
-- parse APL
-- hitlag
-  - add additional array for hitlag affected mods (def, res, stat, and attack). on hitlag will loop through affected mods and add x to expiry
-  - add hitlag task queue; on hitlag will delay execution of tasks by x
-  - probably need to get rid of frame caching in order to handle Hutao cancels
+Character PR checklist:
+
+- [ ] New character package
+- [ ] Config in character package
+- [ ] Run pipeline with added config (generates character curve, talent stats, `.generated.json` files)
+- [ ] Character key
+- [ ] Shortcuts for character key
+- [ ] Update `mode_gcsim.js` with shortcuts for syntax highlighting
+- [ ] Add Character package to imports
+- [ ] Normal Attack
+- [ ] Charge Attack / Aimed Shot
+- [ ] Skill
+- [ ] Burst
+- [ ] A1
+- [ ] A4
+- [ ] C1
+- [ ] C2
+- [ ] C3
+- [ ] C4
+- [ ] C5
+- [ ] C6
+- [ ] Other necessary talents (custom dash/jump, low/high plunge, ...)
+- [ ] Hitlag
+- [ ] ICD
+- [ ] StrikeType
+- [ ] PoiseDMG (blunt attacks only for now)
+- [ ] Hitboxes
+- [ ] Attack durability
+- [ ] Particles
+- [ ] Frames
+- [ ] Update documentation
+- [ ] Xingqiu/Yelan N0 (optional)
+- [ ] Xianyun Plunge (optional)
