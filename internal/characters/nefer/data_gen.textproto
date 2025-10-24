@@ -1,16 +1,14 @@
 id: 10000122
 key: "nefer"
 rarity: QUALITY_ORANGE
-body: BODY_GIRL
-region: ASSOC_TYPE_NODKRAI
+body: BODY_LADY
 element: Grass
 weapon_class: WEAPON_CATALYST
 icon_name: "UI_AvatarIcon_Nefer"
-stats: { # TODO get decimal data for these fields
-   base_hp: 959
-   base_atk: 27
-   base_def: 62
-   base_em: 100
+stats: {
+   base_hp: 988.9742
+   base_atk: 26.8128
+   base_def: 62.2232
    hp_curve: GROW_CURVE_HP_S5
    atk_curve: GROW_CURVE_ATTACK_S5
    def_cruve: GROW_CURVE_HP_S5
@@ -26,120 +24,120 @@ stats: { # TODO get decimal data for these fields
          prop_type: FIGHT_PROP_BASE_ATTACK
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
+         prop_type: FIGHT_PROP_CRITICAL_HURT
       }
    }
    promo_data: {
       max_level: 40
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 848
+         value: 847.95593
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 54
+         value: 53.352
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 23
+         value: 22.987871
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
+         prop_type: FIGHT_PROP_CRITICAL_HURT
       }
    }
    promo_data: {
       max_level: 50
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 603
+         value: 1450.4509
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 38
+         value: 91.26
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 17
+         value: 39.32136
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
-         value: 0.048
+         prop_type: FIGHT_PROP_CRITICAL_HURT
+         value: 0.096
       }
    }
    promo_data: {
       max_level: 60
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 804
+         value: 2253.7776
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 51
+         value: 141.804
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 22
+         value: 61.099342
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
-         value: 0.096
+         prop_type: FIGHT_PROP_CRITICAL_HURT
+         value: 0.192
       }
    }
    promo_data: {
       max_level: 70
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 603
+         value: 2856.2727
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 37
+         value: 179.712
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 17
+         value: 77.43283
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
-         value: 0.096
+         prop_type: FIGHT_PROP_CRITICAL_HURT
+         value: 0.192
       }
    }
    promo_data: {
       max_level: 80
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 602
+         value: 3458.7676
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 37
+         value: 217.62
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 16
+         value: 93.76632
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
-         value: 0.144
+         prop_type: FIGHT_PROP_CRITICAL_HURT
+         value: 0.288
       }
    }
    promo_data: {
       max_level: 90
       add_props: {
          prop_type: FIGHT_PROP_BASE_HP
-         value: 603
+         value: 4061.2627
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_DEFENSE
-         value: 38
+         value: 255.528
       }
       add_props: {
          prop_type: FIGHT_PROP_BASE_ATTACK
-         value: 16
+         value: 110.09981
       }
       add_props: {
-         prop_type: FIGHT_PROP_CRITICAL
-         value: 0.192
+         prop_type: FIGHT_PROP_CRITICAL_HURT
+         value: 0.384
       }
    }
 }
@@ -149,4 +147,4 @@ skill_details: {
    attack: 11221
    burst_energy_cost: 60
 }
-name_text_hash_map: 712501082
+name_text_hash_map: 2745786202
