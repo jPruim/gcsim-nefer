@@ -11,37 +11,27 @@ import (
 	"github.com/genshinsim/gcsim/pkg/modifier"
 )
 
+const (
+	a1Status = "nefer-a1"
+	a4Mod    = "nefer-a4"
+)
+
 // Moonsign: Ascendant Gleam: When she unleashes her Elemental Skill Senet Strategy: Dance of a Thousand Nights,
 // any Dendro Cores on the field will be converted to Seeds of Deceit, and any Lunar-Bloom reactions triggered by
 // nearby characters in the following 15s that would create Dendro Cores or Bountiful Cores will instead create
 // Seeds of Deceit. Seeds of Deceit cannot trigger Hyperbloom or Burgeon reactions and will not burst.
 // When Nefer unleashes a Charged Attack or Phantasm Performance, she can absorb Seeds of Deceit within a
-// certain range, gaining 1 stack of Veil of Falsehood for every seed absorbed. W
-// hen this effect reaches 3 stacks, or when the third stack's duration is refreshed,
+// certain range, gaining 1 stack of Veil of Falsehood for every seed absorbed.
+// When this effect reaches 3 stacks, or when the third stack's duration is refreshed,
 // Nefer's Elemental Mastery will be increased by 100 for 8s.
 func (c *char) a1() {
-	if c.Base.Ascension < 1 || !c.onlyBloomTeam {
-		return
-	}
-
-	for _, this := range c.Core.Player.Chars() {
-		this.AddStatus(a1Status, 30*60, true)
-	}
-	c.a4()
-
-	// Bountiful Cores
+	// Seeds of Deceit
 	c.Core.Events.Subscribe(event.OnDendroCore, func(args ...any) bool {
-		atk := args[1].(*info.AttackEvent)
-		char := c.Core.Player.ByIndex(atk.Info.ActorIndex)
-		if !char.StatusIsActive(a1Status) {
-			return false
-		}
 		g, ok := args[0].(*dendrocore.Gadget)
 		if !ok {
 			return false
 		}
-
-		b := newBountifulCore(c.Core, g.Pos(), atk)
+		b := newSeedOfDeceit(c.Core, g.Pos())
 		b.SetKey(g.Key())
 		c.Core.Combat.ReplaceGadget(g.Key(), b)
 		// prevent blowing up
@@ -49,30 +39,27 @@ func (c *char) a1() {
 		g.OnKill = nil
 
 		return false
-	}, "nilou-a1-cores")
+	}, "nefer-a1-cores")
 
-	c.Core.Events.Subscribe(event.OnPlayerHit, func(args ...any) bool {
+	c.Core.Events.Subscribe(event.OnChargeAttack, func(args ...any) bool {
 		charIndex := args[0].(int)
 		char := c.Core.Player.ByIndex(charIndex)
-		if !char.StatusIsActive(a1Status) {
-			return false
-		}
-		atk := args[1].(*info.AttackEvent)
-		if atk.Info.Element != attributes.Dendro {
+		if !char.StatusIsActive(isneferkey) {
 			return false
 		}
 
+		if c.veilstacks < 3 {
+			return false
+		}
 		m := make([]float64, attributes.EndStatType)
 		m[attributes.EM] = 100
-		for _, this := range c.Core.Player.Chars() {
-			this.AddStatMod(character.StatMod{
-				Base:         modifier.NewBaseWithHitlag("nilou-a1-em", 10*60),
-				AffectedStat: attributes.EM,
-				Amount: func() ([]float64, bool) {
-					return m, true
-				},
-			})
-		}
+		char.AddStatMod(character.StatMod{
+			Base:         modifier.NewBase("nefer-a1-em", 8*60),
+			AffectedStat: attributes.EM,
+			Amount: func() ([]float64, bool) {
+				return m, true
+			},
+		})
 
 		return false
 	}, "nilou-a1")

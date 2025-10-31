@@ -16,7 +16,7 @@ const (
 	bloomRemovalKey     = "nefer-e"
 	particleICDKey      = "nefer-skill-particle-icd"
 	phantasmParticleKey = "nefer-phantasm-particle-icd"
-	phantasmCountKey    = "nefer-phantasm-count"
+	shadowDanceKey      = "nefer-shadow-dance"
 )
 
 func init() {
@@ -42,7 +42,7 @@ func (c *char) Skill(p map[string]int) (action.Info, error) {
 		Mult:       phantasm_nefer_1_att[c.TalentLvlSkill()],
 		FlatDmg:    c.Stat(attributes.EM) * phantasm_nefer_1_em[c.TalentLvlSkill()],
 	}
-	c.Core.QueueAttack(ai, combat.NewCircleHit(c.Core.Combat.Player(), c.Core.Combat.PrimaryTarget(), info.Point{Y: 2}, 2.25), skillHoldHitmark, skillHoldHitmark)
+	c.Core.QueueAttack(ai, combat.NewCircleHit(c.Core.Combat.Player(), c.Core.Combat.PrimaryTarget(), info.Point{Y: 2}, 2.25), skillHitmark, skillHitmark)
 
 	c.SetCDWithDelay(action.ActionSkill, 9*60, 23)
 
@@ -75,6 +75,12 @@ func (c *char) initialParticleCB(a info.AttackCB) {
 
 // Set CA override count
 func (c *char) skillCAOverride() {
-	c.AddStatus(phantasmCountKey, 9*60, true) // 9 sec duration
-	c.SetTag(phantasmCountKey, 3)             // 3 phantasms per skill
+	c.AddStatus(shadowDanceKey, 9*60, true) // 9 sec duration
+	c.phantasmStacks = 3                    // 3 phantasms per skill
+}
+
+// remove CA override
+func (c *char) removeCAOverride() {
+	c.DeleteStatus(shadowDanceKey)
+	c.phantasmStacks = 0
 }
